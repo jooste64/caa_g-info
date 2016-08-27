@@ -51,8 +51,8 @@ def next_prefix(x):
 
 
 def fetch_registrations(url):
-    """Spider the G-INFO side and yield a bunch of four_letter_registration
-    registrations of (hopefully) all the aircraft registred"""
+#    """Spider the G-INFO side and yield a bunch of four_letter_registration
+#    registrations of (hopefully) all the aircraft registred"""
 
 
     while url:
