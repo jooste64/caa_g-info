@@ -60,7 +60,7 @@ def fetch_registrations(url):
         html = scrape(url)
         root = lxml.html.fromstring(html)
         root.make_links_absolute("http://http://publicapps.caa.co.uk/modalapplication.aspx")
-        for link in root.cssselect('tr td a[id^="currentModule_currentModule_myRepeater__ct"]'):
+        for link in root.cssselect('tr td a[id^="mode=detail&regmark="]'):
             reg = link.text_content().strip()
             if not re.match(r'G-[A-Z]{4}', reg):
                 raise ValueError, "Bad registration: %s" % reg
@@ -69,7 +69,7 @@ def fetch_registrations(url):
         # If this is the unique aircraft with this prefix, they might have redirected us
         # to the detail page already
         # We'd see something like this <span id="currentModule_currentModule_Registration" class="small">G-UACA</span>
-        for span in root.cssselect('span[id^="currentModule_currentModule_Registration"]'):
+        for span in root.cssselect('span[id^="mode=detail&regmark="]'):
             reg = span.text
             if not re.match(r'G-[A-Z]{4}', reg):
                 raise ValueError, "Bad registration: %s" % reg
@@ -126,7 +126,7 @@ def parse_aircraft_details(html):
 
     # Photos
     root.make_links_absolute("http://publicapps.caa.co.uk/modalapplication.aspx")
-    photos = root.cssselect('span[id="currentModule_currentModule_AircraftPhoto"] a')
+    photos = root.cssselect('span[id="ginfo_photo.aspx?regmark="] a')
     urls = [l.attrib['href'] for l in photos]
     for i,url in enumerate(urls):
         ret["Photo%d" % (i+1)] = url
