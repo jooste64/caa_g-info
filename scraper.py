@@ -92,7 +92,7 @@ def aircraft_html(registration):
     if not re.match(r"[A-Z]{4}", registration):
         raise ValueError, "Bad registration: %s" % registration
 
-    return scrape("http://publicapps.caa.co.uk/modalapplication.aspx?catid=1&pagetype=65&appid=1&mode=detailnosummary&fullregmark=%s" % registration)
+    return scrape("http://publicapps.caa.co.uk/modalapplication.aspx?catid=60&pagetype=65&appid=1&mode=detailnosummary&fullregmark=%s" % registration)
 
 def data_save(unique_keys, data):
     attempts = 0
@@ -144,7 +144,7 @@ def spider():
     # having the data out of date.
     for i in xrange(26**3 / 31):
         # Start spidering where we left off last run by lookup up the last used prefix in the database
-        url = "http://publicapps.caa.co.uk/modalapplication.aspx?catid=1&pagetype=65&appid=1&mode=detailnosummary&fullregmark=%s" % current_prefix()
+        url = "http://publicapps.caa.co.uk/modalapplication.aspx?catid=60&pagetype=65&appid=1&mode=summary&regmark=%s" % current_prefix()
     
         for reg in fetch_registrations(url):
             print "Fetching aircraft", reg
