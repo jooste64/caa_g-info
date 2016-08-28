@@ -15,6 +15,7 @@ def scrape(url):
     for i in range(N+1):
         try:
             return scraperwiki.scrape(url, user_agent="Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1")
+            print "SuccessDJ"
         except Exception, e:
             print "Failed to fetch", url, e
             print "Retry", i
