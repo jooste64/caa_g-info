@@ -170,5 +170,6 @@ def spider():
 # Main
 if __name__=="scraper":
 #    scraperwiki.sqlite.save_var("current_prefix", "OAA")
+    print "Hello World"
     spider()
 
